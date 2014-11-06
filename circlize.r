@@ -5,7 +5,8 @@ mt<-read.table("reporte.csv",sep=";",header=T)
 library(circlize)
 mt$depto<-as.factor(mt$depto)
 
-pdf("mt12.pdf",width=7,height=7)
+pdf("mt12.pdf",width=7,height=7,bg = "transparent")
+#png("mt12.jpeg",width=300,height=300,bg = "transparent")
 h<-prop.table(margin.table(as.matrix(mt[,2:10]),1))
 col1<-rainbow(9)[c(8,1,3,2,4,9,5,7,6)]
 circos.clear()
@@ -26,6 +27,6 @@ for(i in 1:9){
     circos.link(mt$depto[i], c(sum(r[i,0:(j-1)]),sum(r[i,0:j])), col=rainbow(9)[i],mt$depto[j], c(1+sum(c[0:(i-1),j]),1+sum(c[0:i,j])), h =h[i]*2.5)
   }
 }
-title(main="Migracion de toda la vida, Bolivia 2012",cex.main=2,col.main="brown")
+title(main="Migración de toda la vida, Bolivia 2012",cex.main=2,col.main="brown")
 text(-1,-1.07,"Fuente: Elaboración propia en base al Censo Nacional de Poblacion y Vivienda 2012",cex=0.6,pos=4)
 dev.off()
