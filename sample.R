@@ -6,7 +6,14 @@ ss_uy<-function(alpha=0.05,cv=1,er,ff=FALSE,N,efect=1,tnr=0){
     n<-n0/(1+(n0/N))
   }
   nf<-(n*efect)/(1-tnr)
-  print(paste("cv=",round(er/z,3)))
-  print(paste("n=",round(nf)))
-  return(nf)
+  nr<-round(nf,0)
+  cve<-round(er/z,3)*100
+  return(list(nf=nf,nr=nr,cve=cve))
+}
+cverror<-function(alpha=0.05,cv=1,nf,N,efect=1){
+  z<-qnorm(1-alpha/2)
+  n0<-nf/efect
+  er<-(z*cv)/sqrt(n0)
+  cve<-round(er/z,3)*100
+  return(list(er=er,cve=cve))
 }
