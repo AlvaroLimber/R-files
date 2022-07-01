@@ -1,0 +1,12 @@
+ss_uy<-function(alpha=0.05,cv=1,er,ff=FALSE,N,efect=1,tnr=0){
+  z<-qnorm(1-alpha/2)
+  n0<-((z^2)*(cv^2))/(er^2)
+  n<-n0
+  if(isTRUE(ff)){
+    n<-n0/(1+(n0/N))
+  }
+  nf<-(n*efect)/(1-tnr)
+  print(paste("cv=",round(er/z,3)))
+  print(paste("n=",round(nf)))
+  return(nf)
+}
